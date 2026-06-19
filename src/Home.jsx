@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Home() {
     const [data, setData] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('http://localhost:3000/users') 
@@ -36,8 +37,8 @@ function Home() {
                             <td>{d.phone}</td>
                             <td>
                                 <Link to={`/read/${d.id}`} className='btn btn-sm btn-info me-2 text-white'>Read</Link>
-                                <button className='btn btn-sm btn-primary me-2'>Edit</button>
-                                <button className='btn btn-sm btn-danger'>Delete</button>
+                                <Link to={`/update/${d.id}`} className='btn btn-sm btn-primary me-2'>Edit</Link>
+                                <button onClick={e => handleDelete(d.id)} className='btn btn-sm btn-danger'>Delete</button>
                             </td>
                         </tr>
                     ))
@@ -47,6 +48,15 @@ function Home() {
       </div>
     </div>
   )
+  const handelDelete = (id) => {
+    const confirm = window.confirm("Would you like to Delete?")
+    if(confirm) {
+        axios.delete('http://localhost:3000/users')
+        .then(res => {
+        navigate('/');
+    }).catch(error)(err => console.log(err));
+  }
+}
 }
 
 export default Home
