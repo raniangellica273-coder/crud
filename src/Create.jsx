@@ -42,8 +42,8 @@ function Create() {
                     <input type="text" name="name" className='form-control' placeholder='Enter Phone' 
                     onChange={e => setValues({...values, phone: e.target.value})}/>
                 </div>
-                <button className='btn btn-success'>Submit</button>
-                <Link to="/" className='btn btn-primary ms-3'>Back</Link>
+                <button className='mb-3 btn-success bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded'>Submit</button>
+                <Link to="/" className='btn-primary bg-sky-500 hover:bg-sky-600 text-white px-3 py-1 rounded  ms-3'>Back</Link>
             </form>
         </div>
       

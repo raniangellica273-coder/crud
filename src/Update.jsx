@@ -54,8 +54,8 @@ function Update() {
                     value={values.phone}
                     onChange={e => setValues({...values, phone: e.target.value})}/>
                 </div>
-                <button className='btn btn-success'>Update</button>
-                <Link to="/" className='btn btn-primary ms-3'>Back</Link>
+                <button className='bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded btn-success'>Update</button>
+                <Link to="/" className='ms-3 border-2 px-7 py-2 rounded border-solid'>Back</Link>
             </form>
         </div>
       

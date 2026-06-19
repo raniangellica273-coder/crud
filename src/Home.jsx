@@ -12,51 +12,95 @@ function Home() {
         .catch(err => console.log(err));
     }, [])
 
+    const handleDelete = (id) => {
+    const confirm = window.confirm("Would you like to Delete?")
+    if(confirm) {
+        axios.delete(`http://localhost:3000/users/${id}`)
+        .then(res => {
+            location.reload();
+    }).catch(err => {
+        console.log(err)
+    })
+  }
+}
+
   return (
-    <div className='d-flex flex-column justify-content-center align-items-center bg-light vh-100'>
-      <h1>List of Users</h1>
-      <div className='rounded bg-white border shadow p-4'>
-        <div className='d-flex justify-content-end'><Link to="/create" className='btn btn-success'>Add</Link></div>
-        <table className='table table-stripend'>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    data.map((d, i) => (
-                        <tr key={i}>
-                            <td>{d.id}</td>
-                            <td>{d.name}</td>
-                            <td>{d.email}</td>
-                            <td>{d.phone}</td>
-                            <td>
-                                <Link to={`/read/${d.id}`} className='btn btn-sm btn-info me-2 text-white'>Read</Link>
-                                <Link to={`/update/${d.id}`} className='btn btn-sm btn-primary me-2'>Edit</Link>
-                                <button onClick={e => handleDelete(d.id)} className='btn btn-sm btn-danger'>Delete</button>
-                            </td>
-                        </tr>
-                    ))
-                }
-            </tbody>
+  <div className="min-h-screen bg-slate-100 flex justify-center items-center p-6">
+    <div className="w-full max-w-6xl bg-white rounded-2xl shadow-lg p-8">
+
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-800">
+            Users Management
+          </h1>
+          <p className="text-slate-500 mt-1">
+            Manage user information easily
+          </p>
+        </div>
+
+        <Link
+          to="/create"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg transition"
+        >
+          + Add User
+        </Link>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b bg-slate-50">
+              <th className="text-left p-4 font-semibold">ID</th>
+              <th className="text-left p-4 font-semibold">Name</th>
+              <th className="text-left p-4 font-semibold">Email</th>
+              <th className="text-left p-4 font-semibold">Phone</th>
+              <th className="text-center p-4 font-semibold">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {data.map((d) => (
+              <tr
+                key={d.id}
+                className="border-b hover:bg-slate-50 transition"
+              >
+                <td className="p-4 text-slate-600">{d.id}</td>
+                <td className="p-4 font-medium">{d.name}</td>
+                <td className="p-4 text-slate-600">{d.email}</td>
+                <td className="p-4 text-slate-600">{d.phone}</td>
+
+                <td className="p-4">
+                  <div className="flex justify-center gap-2">
+                    <Link
+                      to={`/read/${d.id}`}
+                      className="bg-sky-500 hover:bg-sky-600 text-white px-3 py-1 rounded"
+                    >
+                      View
+                    </Link>
+
+                    <Link
+                      to={`/update/${d.id}`}
+                      className="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded"
+                    >
+                      Edit
+                    </Link>
+
+                    <button
+                      onClick={() => handleDelete(d.id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
-  )
-  const handelDelete = (id) => {
-    const confirm = window.confirm("Would you like to Delete?")
-    if(confirm) {
-        axios.delete('http://localhost:3000/users')
-        .then(res => {
-        navigate('/');
-    }).catch(error)(err => console.log(err));
-  }
-}
+  </div>
+)
 }
 
 export default Home
