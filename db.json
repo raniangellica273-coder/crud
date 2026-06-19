@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "name": "Rani Angellica",
+      "email": "raniangellica273@gmail.com",
+      "phone": "876765564",
+      "id": "3bmOMm-hBkw"
+    },
+    {
+      "name": "Yusuf",
+      "email": "yusuf@gmail.com",
+      "phone": "876646768",
+      "id": "TO57ZD_5PNU"
+    },
+    {
+      "name": "Rani Angellica",
+      "email": "raniangellica273@gmail.com",
+      "phone": "7678687689",
+      "id": "8sJSS5CYkos"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
